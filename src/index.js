@@ -28,7 +28,7 @@ const AudioComponent = () => {
 
   const update = () => {
     analyzer.current.getByteFrequencyData(dataArray.current);
-    setAudioData(new Uint8Array(dataArray.current))
+    setAudioData(new Uint8Array(dataArray.current));
     raf.current = requestAnimationFrame(update);
   };
 
@@ -83,7 +83,11 @@ const App = () => {
   if (shouldStart) {
     return <AudioComponent />;
   } else {
-    return <button onClick={() => setShouldStart(true)}>Start</button>;
+    return (
+      <div className="container">
+        <button className="start-button" onClick={() => setShouldStart(true)}>Initialize</button>
+      </div>
+    );
   }
 };
 
