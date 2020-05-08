@@ -24,6 +24,11 @@ const AudioComponent = () => {
     analyzer.current.connect(audioContext.destination);
     analyzer.current.fftSize = 256;
     dataArray.current = new Uint8Array(analyzer.current.frequencyBinCount);
+    play();
+
+    return () => {
+      cancelAnimationFrame(raf.current);
+    }
   }, []);
 
   const update = () => {
@@ -43,8 +48,6 @@ const AudioComponent = () => {
     setIsPlaying(false);
     cancelAnimationFrame(raf.current);
   };
-
-  console.log(audioData);
 
   return (
     <div>
@@ -85,7 +88,7 @@ const App = () => {
   } else {
     return (
       <div className="container">
-        <button className="start-button" onClick={() => setShouldStart(true)}>Initialize</button>
+        <button className="start-button" onClick={() => setShouldStart(true)}><PlayButton /></button>
       </div>
     );
   }
