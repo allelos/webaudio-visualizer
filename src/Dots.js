@@ -1,5 +1,4 @@
 import React, { useRef, useEffect, useState } from "react";
-import mojs from "@mojs/core";
 
 import { max, avg } from "./utilities";
 
