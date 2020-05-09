@@ -16,7 +16,7 @@ const AudioComponent = () => {
   const raf = useRef();
 
   useEffect(() => {
-    const audioContext = new AudioContext();
+    const audioContext = new AudioContext() || new webkitAudioContext;
     const source = audioContext.createMediaElementSource(audio.current);
     analyzer.current = audioContext.createAnalyser();
 
