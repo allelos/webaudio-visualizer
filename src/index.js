@@ -16,7 +16,7 @@ const AudioComponent = () => {
   const raf = useRef();
 
   useEffect(() => {
-    const audioContext = new AudioContext() || new webkitAudioContext;
+    const audioContext = new AudioContext() || new window.webkitAudioContext;
     const source = audioContext.createMediaElementSource(audio.current);
     analyzer.current = audioContext.createAnalyser();
 
@@ -72,7 +72,7 @@ const AudioComponent = () => {
         </button>
         <audio
           ref={audio}
-          src="http://best.live24.gr/best1222"
+          src="//best.live24.gr/best1222"
           crossOrigin="anonymous"
         />
       </div>
