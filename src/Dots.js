@@ -2,14 +2,17 @@ import React, { useRef, useEffect, useState } from "react";
 
 import { max, avg } from "./utilities";
 
+const getInnerWidth = () => window.innerWidth;
+const getInnerHeight = () => window.innerHeight;
+
 const draw = (el, audioData, value) => {
   if (!audioData) return;
   const canvas = el.current;
 
   const ctx = canvas.getContext("2d");
 
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  canvas.width = getInnerWidth();
+  canvas.height = getInnerHeight();
 
   const width = canvas.width;
   const height = canvas.height;
@@ -30,21 +33,6 @@ const draw = (el, audioData, value) => {
   ctx.strokeStyle = "#ffffff";
   ctx.clearRect(0, 0, width, height);
   ctx.beginPath();
-
-  // ctx.arc((width / 2), height / 2, height * 0.25, 0, Math.PI * 2);
-  // ctx.shadowColor = "rgba(0,0,0,0.25)";
-  // ctx.shadowBlur = 10;
-  // ctx.shadowOffsetY = 4;
-  // let linGrd = ctx.createLinearGradient(
-  //   width / 2,
-  //   height / 2,
-  //   height * 0.25,
-  //   height * 0.25
-  // );
-  // linGrd.addColorStop(0, "rgba(241,220,33,1)");
-  // linGrd.addColorStop(1, "rgba(241,220,33,0.5)");
-  // ctx.fillStyle = linGrd;
-  // ctx.fill();
 
   if (value === "circles") {
     const startAngle = 0;
@@ -83,29 +71,14 @@ const draw = (el, audioData, value) => {
   }
 };
 
-const Dots = ({ audioData }) => {
-  const [value, setValue] = useState("lines");
+const Dots = ({ audioData, visualization }) => {
   const el = useRef();
 
   useEffect(() => {
-    draw(el, audioData, value);
-  });
+    draw(el, audioData, visualization);
+  }, [audioData]);
 
-  return (
-    <div>
-      <canvas ref={el} className="dots" />
-      <select
-        className="select"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-      >
-        <option default value="lines">
-          Lines
-        </option>
-        <option value="circles">Circles</option>
-      </select>
-    </div>
-  );
+  return <canvas ref={el} className="dots" />;
 };
 
 export default Dots;
