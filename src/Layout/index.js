@@ -1,8 +1,8 @@
 import React, { useState, useRef} from "react";
-import Controls from "./Controls";
-import Player from "./player";
-import VizSelector from "./VizSelector";
-import Dots from "./Dots";
+import Controls from "../Controls";
+import Player from "../Player";
+import VizSelector from "../Selector";
+import Dots from "../Visualizations";
 
 export default () => {
   const [isPlaying, setIsPlaying] = useState(false);

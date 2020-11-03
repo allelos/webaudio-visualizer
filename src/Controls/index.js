@@ -1,6 +1,6 @@
 import React from "react";
 
-import { PlayButton, PauseButton } from "./Buttons";
+import { PlayButton, PauseButton } from "./buttons";
 
 const Controls = ({ play, pause, isPlaying }) => (
   <div className="controls">
