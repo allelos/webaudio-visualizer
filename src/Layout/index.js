@@ -1,12 +1,12 @@
-import React, { useState, useRef} from "react";
+import React, { useState, useRef } from "react";
 import Controls from "../Controls";
 import Player from "../Player";
 import VizSelector from "../Selector";
-import Dots from "../Visualizations";
+import Visualization from "../Visualization";
 
 export default () => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [visualization, setVisualization] = useState(() => "lines");
+  const [visualization, setVisualization] = useState("sphere");
 
   const audio = useRef();
 
@@ -27,13 +27,11 @@ export default () => {
         ref={audio}
         src="//best.live24.gr/best1222"
         crossOrigin="anonymous"
+        // muted
       />
       <Player audio={audio} isPlaying={isPlaying}>
-        {(audioData) => (
-          <Dots audioData={audioData} visualization={visualization} />
-        )}
+        {(audioData) => isPlaying && <Visualization audioData={audioData} />}
       </Player>
-      <VizSelector value={visualization} onChange={setVisualization} />
     </div>
   );
 };

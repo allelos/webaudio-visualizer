@@ -7,7 +7,8 @@ const VizSelector = ({ value, onChange }) => {
       value={value}
       onChange={(e) => onChange(e.target.value)}
     >
-      <option default value="lines">
+      <option value="sphere">Sphere</option>
+      <option value="lines">
         Lines
       </option>
       <option value="circles">Circles</option>
